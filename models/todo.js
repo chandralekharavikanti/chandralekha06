@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
     /**
      * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
+     * And Also method is not part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
 
     static addTodo({ title, dueDate }) {
       return this.create({ title: title, dueDate: dueDate, completed: false });
+    }
+
+    static getTodos() {
+      return this.findAll({ order: [["id", "ASC"]] });
     }
 
     markAsCompleted() {
